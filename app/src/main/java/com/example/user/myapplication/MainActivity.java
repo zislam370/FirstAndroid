@@ -5,6 +5,7 @@ package com.example.user.myapplication;
         import android.graphics.Color;
         import android.os.Bundle;
 
+        import android.view.Gravity;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
@@ -62,14 +63,17 @@ public class MainActivity extends Activity  {
                     Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
 
                     tx1.setVisibility(View.VISIBLE);
-                    tx1.setBackgroundColor(Color.RED);
+                    tx1.setBackgroundColor(Color.parseColor("#CCCCCC"));
 
                     counter--;
+
                     tx1.setText(Integer.toString(counter));
 
                     if (counter == 0) {
                         b1.setEnabled(false);
-
+                        Toast toast= Toast.makeText(getApplicationContext(), "Wait for 5 Secend",Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
 
                         Timer buttonTimer = new Timer();
                         buttonTimer.schedule(new TimerTask() {
@@ -85,6 +89,7 @@ public class MainActivity extends Activity  {
                                 });
                             }
                         }, 5000);
+                        counter=3;
                     }
                 }
                 ed1.setText("");
