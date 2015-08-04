@@ -19,6 +19,8 @@ package com.example.user.myapplication;
 
         import java.io.FileInputStream;
         import java.io.FileOutputStream;
+        import java.util.Timer;
+        import java.util.TimerTask;
 
 public class MainActivity extends Activity  {
     Button b1,b2;
@@ -61,11 +63,28 @@ public class MainActivity extends Activity  {
 
                     tx1.setVisibility(View.VISIBLE);
                     tx1.setBackgroundColor(Color.RED);
+
                     counter--;
                     tx1.setText(Integer.toString(counter));
 
                     if (counter == 0) {
                         b1.setEnabled(false);
+
+
+                        Timer buttonTimer = new Timer();
+                        buttonTimer.schedule(new TimerTask() {
+
+                            @Override
+                            public void run() {
+                                runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        b1.setEnabled(true);
+                                    }
+                                });
+                            }
+                        }, 5000);
                     }
                 }
                 ed1.setText("");
